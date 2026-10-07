@@ -1,0 +1,6 @@
+{
+  "name": "Doraemon: Castle of the Undersea Devil - Deep Sea Dive Experience",
+  "description": "An immersive deep-sea dive fan experience celebrating the movie Doraemon: New Nobita and the Castle of the Undersea Devil, featuring interactive Canvas 2D ocean simulation, procedural Web Audio, and voiced story mode.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

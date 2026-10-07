@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-ink: #eaf6ff;
+    --color-muted: #a9cbe6;
+    --color-gold: #ffd84d;
+    --color-red: #ff4a3d;
+    --color-bg: #02050f;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #02050f;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-figtree), system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, .font-baloo {
+    font-family: var(--font-baloo), var(--font-figtree), system-ui, sans-serif;
+  }
+}
+
+/* Red Vignette Overlay for Quake Mode (z-index: 3) */
+#red-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  background: radial-gradient(circle at center, transparent 40%, rgba(255, 74, 61, 0.45) 100%);
+}
+
+body.quake #red-vignette {
+  opacity: 1;
+  animation: pulse-vignette 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-vignette {
+  0% {
+    background: radial-gradient(circle at center, transparent 45%, rgba(255, 74, 61, 0.3) 100%);
+  }
+  100% {
+    background: radial-gradient(circle at center, transparent 35%, rgba(255, 74, 61, 0.6) 100%);
+  }
+}
+
+/* Content Tremor / Shake Keyframes */
+@keyframes content-tremor {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-3px, 2px) rotate(-0.15deg); }
+  30% { transform: translate(3px, -2px) rotate(0.15deg); }
+  45% { transform: translate(-2px, -3px) rotate(-0.1deg); }
+  60% { transform: translate(3px, 2px) rotate(0.1deg); }
+  75% { transform: translate(-1px, 2px) rotate(-0.05deg); }
+  90% { transform: translate(2px, -1px) rotate(0.05deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+body.quake .quake-container {
+  animation: content-tremor 0.28s infinite ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.quake .quake-container {
+    animation: none !important;
+  }
+  body.quake #red-vignette {
+    animation: none !important;
+  }
+}
